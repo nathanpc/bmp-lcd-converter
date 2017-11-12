@@ -3,6 +3,7 @@ program bmp2lcd;
 uses
     bmp;
 begin
-    Hello;
+    OpenBitmapFile('test.bmp');
+    PrintHeaders;
+    CloseBitmapFile;
 end.
-

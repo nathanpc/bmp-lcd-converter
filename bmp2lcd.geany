@@ -28,15 +28,15 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=63;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5CBMP2LCD.PAS;0;4
-FILE_NAME_1=147;Pascal;0;EUTF-8;1;1;0;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5CBMP.PAS;0;4
+current_page=1
+FILE_NAME_0=74;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5Cbmp2lcd.pas;0;4
+FILE_NAME_1=194;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5Cbmp.pas;0;4
 
 [build-menu]
 EX_00_LB=_Execute
-EX_00_CM="./%e"
+EX_00_CM="./bmp2lcd.exe"
 EX_00_WD=
 PascalFT_00_LB=_Compile
-PascalFT_00_CM=C:\\lazarus\\fpc\\3.0.0\\bin\\x86_64-win64\\fpc "%f"
+PascalFT_00_CM=C:\\lazarus\\fpc\\3.0.0\\bin\\x86_64-win64\\fpc "bmp2lcd.pas"
 PascalFT_00_WD=
 filetypes=Pascal;
