@@ -74,7 +74,7 @@ begin
     WriteLn('  Signature:   ' + Bitmap.header.Signature);
     WriteLn('  File Size:   ' + IntToStr(Bitmap.header.FileSize));
     WriteLn('  Reserved:    ' + IntToHex(Bitmap.header.Reserved[0], 2) + ' ' + IntToHex(Bitmap.header.Reserved[1], 2) + ' ' + IntToHex(Bitmap.header.Reserved[2], 2) + ' ' + IntToHex(Bitmap.header.Reserved[3], 2));
-    WriteLn('  Data Offset: ' + IntToStr(Bitmap.header.FileSize));
+    WriteLn('  Data Offset: ' + IntToStr(Bitmap.header.DataOffset));
 
     WriteLn('Info Header');
     WriteLn('  Size:             ' + IntToStr(Bitmap.info.Size));
