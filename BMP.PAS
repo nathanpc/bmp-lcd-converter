@@ -23,20 +23,39 @@ type
             ColorsImportant: integer;
         end;
         { TODO: Include space for color table. }
+        image: array of array of boolean;
     end;
 
 var
     Bitmap: TBMP;
 
 procedure PrintHeaders;
+procedure PrintImage;
 procedure OpenBitmapFile(bmp_file: string);
 procedure CloseBitmapFile;
 
 implementation
 uses
-    SysUtils;
+    SysUtils, StrUtils;
 var
     BMPFile: file;
+
+{ Reverse the bits in a byte. }
+function ReverseBits(b: byte): byte;
+var
+    Result: byte;
+    i: integer;
+begin
+    Result := 0;
+
+    for i := 1 to 8 do
+    begin
+        Result := (Result shl 1) or (b and 1);
+        b := b shr 1;
+    end;
+
+    ReverseBits := Result;
+end;
 
 { Converts a byte array to integer. }
 function ByteArrToInt(data: array of byte; length: integer): integer;
@@ -124,13 +143,88 @@ begin
     Bitmap.info.ColorsImportant := ByteArrToInt(data, 4);
 end;
 
+procedure ReadImage;
+var
+    scanlineb: array [0..3] of byte;
+    scanline: integer;
+    line, col: integer;
+    height: integer;
+begin
+    { Set the number of rows and seek the file to the image data. }
+    SetLength(Bitmap.image, Bitmap.info.Height);
+    Seek(BMPFile, Bitmap.header.DataOffset);
+    height := Bitmap.info.Height - 1;
+
+    { Reading the image data. }
+    for line := 0 to height do
+    begin
+        { Read a line (32 bits). }
+        BlockRead(BMPFile, scanlineb, 4);
+
+        { Reverse the bits since they are LSB-first. }
+        scanlineb[0] := ReverseBits(scanlineb[0]);
+        scanlineb[1] := ReverseBits(scanlineb[1]);
+        scanlineb[2] := ReverseBits(scanlineb[2]);
+        scanlineb[3] := ReverseBits(scanlineb[3]);
+
+        { Convert the bytes to a integer of pixels. }
+        scanline := ByteArrToInt(scanlineb, 4);
+
+        for col := 0 to Bitmap.info.Width - 1 do
+        begin
+            { Set the size of each row and store the pixels. }
+            SetLength(Bitmap.image[height - line], Bitmap.info.Width);
+            Bitmap.image[height - line][col] := ((scanline shr col) and 1) = 1;
+        end;
+    end;
+end;
+
+procedure PrintImage;
+var
+    line, col: integer;
+begin
+    { Print the top frame. }
+    Write(#201);
+    for col := 0 to Bitmap.info.Width - 1 do
+    begin
+        Write(#205);
+    end;
+    WriteLn(#187);
+
+    { Print the actual image. }
+    for line := 0 to Bitmap.info.Height - 1 do
+    begin
+        Write(#186);
+        for col := 0 to Bitmap.info.Width - 1 do
+        begin
+            if Bitmap.image[line][col] then
+                Write(' ')
+            else
+                Write(#219)
+        end;
+
+        WriteLn(#186);
+    end;
+
+    { Print the bottom frame. }
+    Write(#200);
+    for col := 0 to Bitmap.info.Width - 1 do
+    begin
+        Write(#205);
+    end;
+    WriteLn(#188);
+end;
+
 { Opens the bitmap file and reads the headers. }
 procedure OpenBitmapFile(bmp_file: string);
 begin
+    { Open the file }
     Assign(BMPFile, bmp_file);
     Reset(BMPFile, 1);
 
+    { Parse the headers and read the image. }
     ParseHeaders;
+    ReadImage;
 end;
 
 { Close the bitmap file. }

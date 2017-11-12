@@ -5,5 +5,8 @@ uses
 begin
     OpenBitmapFile('test.bmp');
     PrintHeaders;
+    WriteLn;
+    WriteLn('Image:');
+    PrintImage;
     CloseBitmapFile;
 end.
