@@ -1,7 +1,9 @@
 # Generated files
 *.bak
+*.tpu
 *.$$$
 *.exe
 
 # Misc.
+*.bmp
 .DS_Store

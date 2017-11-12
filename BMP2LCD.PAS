@@ -1,6 +1,8 @@
 program bmp2lcd;
+
+uses
+    bmp;
 begin
-     WriteLn('Hello, World');
-     ReadLn;
+    Hello;
 end.
 
