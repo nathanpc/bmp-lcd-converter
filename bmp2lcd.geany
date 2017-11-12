@@ -1,0 +1,42 @@
+[editor]
+line_wrapping=true
+line_break_column=80
+auto_continue_multiline=true
+
+[file_prefs]
+final_new_line=true
+ensure_convert_new_lines=true
+strip_trailing_spaces=true
+replace_tabs=true
+
+[indentation]
+indent_width=4
+indent_type=0
+indent_hard_tab_width=8
+detect_indent=false
+detect_indent_width=false
+indent_mode=2
+
+[project]
+name=bmp2lcd
+base_path=C:\\Users\\natha\\Google Drive\\Developer\\Projects\\bmp-lcd-converter\\
+description=
+file_patterns=
+
+[long line marker]
+long_line_behaviour=1
+long_line_column=72
+
+[files]
+current_page=0
+FILE_NAME_0=63;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5CBMP2LCD.PAS;0;4
+FILE_NAME_1=147;Pascal;0;EUTF-8;1;1;0;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5CBMP.PAS;0;4
+
+[build-menu]
+EX_00_LB=_Execute
+EX_00_CM="./%e"
+EX_00_WD=
+PascalFT_00_LB=_Compile
+PascalFT_00_CM=C:\\lazarus\\fpc\\3.0.0\\bin\\x86_64-win64\\fpc "%f"
+PascalFT_00_WD=
+filetypes=Pascal;

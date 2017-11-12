@@ -1,4 +1,6 @@
 # Generated files
+*.o
+*.ppu
 *.bak
 *.tpu
 *.$$$
