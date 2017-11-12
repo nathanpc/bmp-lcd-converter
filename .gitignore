@@ -1,2 +1,7 @@
+# Generated files
+*.bak
+*.$$$
+*.exe
+
 # Misc.
 .DS_Store
