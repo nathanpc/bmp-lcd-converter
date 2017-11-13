@@ -5,22 +5,22 @@ type
     TBMP = record
         header: record
             Signature: string;
-            FileSize: DWord;
+            FileSize: LongWord;
             Reserved: array [0..3] of byte;
-            DataOffset: DWord;
+            DataOffset: LongWord;
         end;
         info: record
-            Size: DWord;
-            Width: DWord;
-            Height: DWord;
-            Planes: DWord;
-            ColorDepth: DWord;
-            Compression: DWord;
-            ImageSize: DWord;
-            xPixelsPerM: DWord;
-            yPixelsPerM: DWord;
-            ColorsUsed: DWord;
-            ColorsImportant: DWord;
+            Size: LongWord;
+            Width: LongWord;
+            Height: LongWord;
+            Planes: LongWord;
+            ColorDepth: LongWord;
+            Compression: LongWord;
+            ImageSize: LongWord;
+            xPixelsPerM: LongWord;
+            yPixelsPerM: LongWord;
+            ColorsUsed: LongWord;
+            ColorsImportant: LongWord;
         end;
         { TODO: Include space for color table. }
         image: array of array of boolean;
@@ -58,14 +58,14 @@ begin
 end;
 
 { Converts a byte array to integer. }
-function ByteArrToDWord(data: array of byte; length: integer): DWord;
+function ByteArrToInt(data: array of byte; length: integer): LongWord;
 begin
     if length = 2 then
-        ByteArrToDWord := DWord((data[1] shl 8) or data[0])
+        ByteArrToInt := LongWord((data[1] shl 8) or data[0])
     else if length = 4 then
-        ByteArrToDWord := DWord((data[3] shl 24) or (data[2] shl 16) or (data[1] shl 8) or data[0])
+        ByteArrToInt := LongWord((data[3] shl 24) or (data[2] shl 16) or (data[1] shl 8) or data[0])
     else
-        WriteLn('ByteArrToDWord: Unsupported array length');
+        WriteLn('ByteArrToInt: Unsupported array length');
 end;
 
 procedure PrintHeaders;
@@ -100,53 +100,53 @@ begin
     Bitmap.header.Signature := char(data[0]) + char(data[1]);
 
     BlockRead(BMPFile, data, 4);
-    Bitmap.header.FileSize := ByteArrToDWord(data, 4);
+    Bitmap.header.FileSize := ByteArrToInt(data, 4);
 
     BlockRead(BMPFile, data, 4);
     Bitmap.header.Reserved := data;
 
     BlockRead(BMPFile, data, 4);
-    Bitmap.header.DataOffset := ByteArrToDWord(data, 4);
+    Bitmap.header.DataOffset := ByteArrToInt(data, 4);
 
     { Info Header }
     BlockRead(BMPFile, data, 4);
-    Bitmap.info.Size := ByteArrToDWord(data, 4);
+    Bitmap.info.Size := ByteArrToInt(data, 4);
 
     BlockRead(BMPFile, data, 4);
-    Bitmap.info.Width := ByteArrToDWord(data, 4);
+    Bitmap.info.Width := ByteArrToInt(data, 4);
 
     BlockRead(BMPFile, data, 4);
-    Bitmap.info.Height := ByteArrToDWord(data, 4);
+    Bitmap.info.Height := ByteArrToInt(data, 4);
 
     BlockRead(BMPFile, data, 2);
-    Bitmap.info.Planes := ByteArrToDWord(data, 2);
+    Bitmap.info.Planes := ByteArrToInt(data, 2);
 
     BlockRead(BMPFile, data, 2);
-    Bitmap.info.ColorDepth := ByteArrToDWord(data, 2);
+    Bitmap.info.ColorDepth := ByteArrToInt(data, 2);
 
     BlockRead(BMPFile, data, 4);
-    Bitmap.info.Compression := ByteArrToDWord(data, 4);
+    Bitmap.info.Compression := ByteArrToInt(data, 4);
 
     BlockRead(BMPFile, data, 4);
-    Bitmap.info.ImageSize := ByteArrToDWord(data, 4);
+    Bitmap.info.ImageSize := ByteArrToInt(data, 4);
 
     BlockRead(BMPFile, data, 4);
-    Bitmap.info.xPixelsPerM := ByteArrToDWord(data, 4);
+    Bitmap.info.xPixelsPerM := ByteArrToInt(data, 4);
 
     BlockRead(BMPFile, data, 4);
-    Bitmap.info.yPixelsPerM := ByteArrToDWord(data, 4);
+    Bitmap.info.yPixelsPerM := ByteArrToInt(data, 4);
 
     BlockRead(BMPFile, data, 4);
-    Bitmap.info.ColorsUsed := ByteArrToDWord(data, 4);
+    Bitmap.info.ColorsUsed := ByteArrToInt(data, 4);
 
     BlockRead(BMPFile, data, 4);
-    Bitmap.info.ColorsImportant := ByteArrToDWord(data, 4);
+    Bitmap.info.ColorsImportant := ByteArrToInt(data, 4);
 end;
 
 procedure ReadImage;
 var
     scanlineb: array [0..3] of byte;
-    scanline: DWord;
+    scanline: LongWord;
     line, col: integer;
     height: integer;
     chunk, chunks: integer;
@@ -177,7 +177,7 @@ begin
             scanlineb[3] := ReverseBits(scanlineb[3]);
 
             { Convert the bytes to a integer of pixels. }
-            scanline := ByteArrToDWord(scanlineb, 4);
+            scanline := ByteArrToInt(scanlineb, 4);
 
             for col := 0 to 31 do
             begin
