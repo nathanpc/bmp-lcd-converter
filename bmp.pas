@@ -210,6 +210,40 @@ begin
     WriteLn(#188);
 end;
 
+{ Checks if the image is valid. }
+procedure ValidateHeader;
+var
+    fail: boolean;
+begin
+    fail := False;
+
+    if Bitmap.info.Planes > 1 then
+    begin
+        WriteLn('ERROR: Bitmap file has more than one plane (' + IntToStr(Bitmap.info.Planes) + ').');
+        fail := True;
+    end;
+
+    if Bitmap.info.ColorDepth > 1 then
+    begin
+        WriteLn('ERROR: Bitmap file is not true monochrome (Color depth = ' + IntToStr(Bitmap.info.ColorDepth) + ' bits).');
+        fail := True;
+    end;
+
+    if Bitmap.info.Compression > 0 then
+    begin
+        WriteLn('ERROR: Bitmap file has compression (Compression = ' + IntToStr(Bitmap.info.Compression) + ').');
+        fail := True;
+    end;
+
+    if fail then
+    begin
+        WriteLn;
+        WriteLn('The bitmap files must be saved as monochrome (1-bit color depth) and have no compression applied. The simplest way to achieve this is to use MS Paint, go to File->Save As... and select "Monochrome Bitmap"');
+
+        Halt;
+    end;
+end;
+
 { Opens the bitmap file and reads the headers. }
 procedure OpenBitmapFile(bmp_file: string);
 begin
@@ -219,6 +253,7 @@ begin
 
     { Parse the headers and read the image. }
     ParseHeaders;
+    ValidateHeader;
     ReadImage;
 end;
 
