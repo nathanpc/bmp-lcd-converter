@@ -212,7 +212,7 @@ begin
             if Bitmap.image[line][col] then
                 Write(' ')
             else
-                Write(#219)
+                Write(#254)
         end;
 
         WriteLn(#186);

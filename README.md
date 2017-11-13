@@ -2,6 +2,8 @@
 
 This little utility will allow us to convert bitmap files into a array of pixels to be displayed in a LCD screen.
 
+![Example Screenshot](https://i.imgur.com/0gTuaIH.png)
+
 
 ## Supported displays
 

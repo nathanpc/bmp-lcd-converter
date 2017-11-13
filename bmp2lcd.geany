@@ -28,14 +28,14 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=652;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5Cbmp2lcd.pas;0;4
-FILE_NAME_1=6569;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5Cbmp.pas;0;4
+current_page=1
+FILE_NAME_0=432;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5Cbmp2lcd.pas;0;4
+FILE_NAME_1=5212;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5Cbmp.pas;0;4
 FILE_NAME_2=29;Markdown;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5CREADME.md;0;4
 
 [build-menu]
 EX_00_LB=_Execute
-EX_00_CM="./bmp2lcd.exe" pcd8544 test4.bmp
+EX_00_CM="./bmp2lcd.exe" pcd8544 test8.bmp
 EX_00_WD=
 PascalFT_00_LB=_Compile
 PascalFT_00_CM=C:\\lazarus\\fpc\\3.0.0\\bin\\x86_64-win64\\fpc "bmp2lcd.pas"
