@@ -36,26 +36,9 @@ procedure CloseBitmapFile;
 
 implementation
 uses
-    SysUtils, StrUtils, Math;
+    SysUtils, StrUtils, Math, BitOp;
 var
     BMPFile: file;
-
-{ Reverse the bits in a byte. }
-function ReverseBits(b: byte): byte;
-var
-    Result: byte;
-    i: integer;
-begin
-    Result := 0;
-
-    for i := 1 to 8 do
-    begin
-        Result := (Result shl 1) or (b and 1);
-        b := b shr 1;
-    end;
-
-    ReverseBits := Result;
-end;
 
 { Converts a byte array to integer. }
 function ByteArrToInt(data: array of byte; length: integer): LongWord;
@@ -182,7 +165,7 @@ begin
             for col := 0 to 31 do
             begin
                 { Store the pixel. }
-                Bitmap.image[height - line][col + (32 * chunk)] := ((scanline shr col) and 1) = 1;
+                Bitmap.image[height - line][col + (32 * chunk)] := GetBit(scanline, col);
 
                 if (col + (32 * chunk)) = Bitmap.info.Width - 1 then
                     Break;

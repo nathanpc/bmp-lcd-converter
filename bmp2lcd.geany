@@ -28,10 +28,11 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
+current_page=3
 FILE_NAME_0=432;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5Cbmp2lcd.pas;0;4
-FILE_NAME_1=5212;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5Cbmp.pas;0;4
-FILE_NAME_2=29;Markdown;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5CREADME.md;0;4
+FILE_NAME_1=978;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5Cbmp.pas;0;4
+FILE_NAME_2=735;Markdown;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5CREADME.md;0;4
+FILE_NAME_3=0;Pascal;0;EUTF-8;0;1;1;C%3A%5CUsers%5Cnatha%5CGoogle%20Drive%5CDeveloper%5CProjects%5Cbmp-lcd-converter%5Cbitop.pas;0;4
 
 [build-menu]
 EX_00_LB=_Execute
